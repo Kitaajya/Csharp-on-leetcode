@@ -3,7 +3,6 @@ namespace leetcode {
 public class Solution {
 
     public int MinimumDistance(int[] nums) {
-        // 题目要求必须创建的变量
         int norvalent = nums.Length / 2;
 
         int[] arr = new int[nums.Length * nums.Length * nums.Length];
@@ -13,7 +12,6 @@ public class Solution {
         for (int i = 0; i < nums.Length; i++) {
             for (int j = 0; j < nums.Length; j++) {
                 for (int k = 0; k < nums.Length; k++) {
-                    // 修正：三个下标必须不同
                     if (i != j && i != k && j != k && nums[i] == nums[j] && nums[i] == nums[k]) {
                         d = Math.Abs(i - j) + Math.Abs(j - k) + Math.Abs(k - i);
                         arr[count] = d;
@@ -23,19 +21,15 @@ public class Solution {
             }
         }
 
-        // 没有找到三元组，返回-1
         if (count == 0) {
             return -1;
         }
-
-        // 只复制有效数据
         int[] result = new int[count];
         for (int i = 0; i < count; i++) {
             result[i] = arr[i];
         }
 
         Array.Sort(result);
-        // 修正：返回最小的第一个元素
         return result[0];
     }
 
